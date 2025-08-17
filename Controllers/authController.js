@@ -2,8 +2,8 @@ const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const otpGenerator = require('otp-generator');
 
-const { User } = require('../Model/userModel');
-const { Otp } = require('../Model/otpModel');
+const { User } = require('../model/userModel');
+const { Otp } = require('../model/otpModel');
 
 async function generateOtp(number) {
   // 1) Generate OTP
@@ -35,7 +35,7 @@ exports.signupOpt = async (req, res) => {
   try {
     // 1) Check if user already exists
     const user = await User.findOne({ number: req.body.number });
-    if (user) return res.status(400).send('کاربر قبلا ثبت نام کرده است!');a
+    if (user) return res.status(400).send('کاربر قبلا ثبت نام کرده است!');
 
     // 2) Generate Otp Document
     await generateOtp(req.body.number);
